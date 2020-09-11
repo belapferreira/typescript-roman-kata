@@ -4,7 +4,7 @@ export default {
   colors: {
     secondary: "#f5dead",
 
-    background: "#0d0d0d",
+    background: "#121212",
     li: "#ffff",
     title: "#DE9A60",
     text: "#f5dead",
