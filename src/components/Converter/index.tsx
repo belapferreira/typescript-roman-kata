@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Form } from "@unform/web";
 
+import { useToast } from "../../hooks/toast";
 import { useRomanNumbers } from "../../hooks/romanNumbers";
 
 import Input from "../Input";
@@ -8,15 +9,26 @@ import Input from "../Input";
 import { ConvertContainer, InputBlock, ResultBox } from "./styles";
 
 interface SubmitData {
-  decimal: string;
+  decimal: number;
 }
 
 const Converter: React.FC = () => {
   const [converted, setConverted] = useState("");
   const { toRoman } = useRomanNumbers();
-
+  const { addToast } = useToast();
   function handleSubmit(data: SubmitData) {
     if (!data.decimal) {
+      return;
+    }
+
+    console.log(data.decimal);
+
+    if (data.decimal <= 0 || data.decimal > 3999) {
+      addToast({
+        type: "error",
+        title: "Erro",
+        description: "Digite um número de 1 a 3999, tente novamente!",
+      });
       return;
     }
 
