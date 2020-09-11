@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Form } from '@unform/web';
+import { Form } from "@unform/web";
 
 import { useRomanNumbers } from "../../hooks/romanNumbers";
 
-import Input from '../Input';
+import Input from "../Input";
 
 import { ConvertContainer, InputBlock, ResultBox } from "./styles";
 
@@ -12,7 +12,7 @@ interface SubmitData {
 }
 
 const Converter: React.FC = () => {
-  const [converted, setConverted] = useState('');
+  const [converted, setConverted] = useState("");
   const { toRoman } = useRomanNumbers();
 
   function handleSubmit(data: SubmitData) {
@@ -43,9 +43,7 @@ const Converter: React.FC = () => {
       </Form>
       <ResultBox className="result">
         <h4>O número romano correspondente é:</h4>
-        <div className="result-content">
-          {converted}
-        </div>
+        <div className="result-content">{converted}</div>
       </ResultBox>
     </ConvertContainer>
   );
