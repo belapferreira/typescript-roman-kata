@@ -1,4 +1,9 @@
 import React, { useState } from "react";
+import * as yup from "yup";
+import "core-js/es/promise";
+import "core-js/es/set";
+import "core-js/es/map";
+
 import { Form } from "@unform/web";
 
 import { useToast } from "../../hooks/toast";
@@ -16,25 +21,38 @@ const Converter: React.FC = () => {
   const [converted, setConverted] = useState("");
   const { toRoman } = useRomanNumbers();
   const { addToast } = useToast();
-  function handleSubmit(data: SubmitData) {
-    if (!data.decimal) {
-      return;
-    }
 
-    console.log(data.decimal);
-
-    if (data.decimal <= 0 || data.decimal > 3999) {
-      addToast({
-        type: "error",
-        title: "Erro",
-        description: "Digite um número de 1 a 3999, tente novamente!",
+  async function handleSubmit(data: SubmitData) {
+    try {
+      yup.setLocale({
+        mixed: {
+          notType: "Digite um número de 1 a 3999, tente novamente!",
+        },
+        number: {
+          min: "O número deve ser maior ou igual a 1",
+          max: "O número deve ser menor ou igual a 3999",
+          integer: "Digite un número inteiro",
+        },
       });
-      return;
+
+      const schema = yup.object().shape({
+        decimal: yup.number().integer().required().min(1).max(3999),
+      });
+
+      await schema.validate(data);
+
+      const convertedNumber = toRoman(Number(data.decimal));
+
+      setConverted(String(convertedNumber));
+    } catch (err) {
+      if (err instanceof yup.ValidationError) {
+        addToast({
+          type: "error",
+          title: "Erro",
+          description: err.message,
+        });
+      }
     }
-
-    const convertedNumber = toRoman(Number(data.decimal));
-
-    setConverted(String(convertedNumber));
   }
 
   return (

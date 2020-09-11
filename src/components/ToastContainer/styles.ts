@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const Container = styled.div`
   position: absolute;
@@ -6,4 +6,4 @@ export const Container = styled.div`
   top: 0%;
   padding: 30px;
   overflow: hidden;
-`
+`;
