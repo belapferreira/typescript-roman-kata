@@ -27,13 +27,6 @@ export default createGlobalStyle`
     -webkit-font-smoothing: antialiased;
   }
 
-  /* #root {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-  } */
-
   h1, h2, h3, h4, h5, h6 {
     font: 700 3.2rem 'Playfair Display';
     color: ${(props) => props.theme.colors.title};
@@ -42,10 +35,6 @@ export default createGlobalStyle`
   @media (min-width: 900px) {
     :root {
       font-size: 62.5%;
-    }
-
-    #root {
-      flex-direction: row;
     }
   }
 `;

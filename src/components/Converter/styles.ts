@@ -81,5 +81,3 @@ export const ResultBox = styled.section`
     align-items: center;
   }
 `;
-
-

@@ -27,6 +27,7 @@ const RomanNumbersProvider: React.FC = ({ children }) => {
           return halfSymbol + symbol.repeat(digit - 5);
         case digit === 9:
           return symbol + nextSymbol;
+        default:
       }
 
       return "";
@@ -42,9 +43,10 @@ const RomanNumbersProvider: React.FC = ({ children }) => {
     return numStr
       .split("")
       .map((digit, index) =>
-        getRomanNumeral(numStr.length - index - 1, parseInt(digit)),
+        getRomanNumeral(numStr.length - index - 1, parseInt(digit, 10)),
       )
       .join("");
+      //eslint-disable-next-line
   }, []);
 
   const value = React.useMemo(
