@@ -2,7 +2,6 @@ export default {
   title: "light",
 
   colors: {
-    primary: "linear-gradient(90deg, #FFFFFF 0%, #ff9000 100%)",
     secondary: "#0d0d0d",
 
     background: "#e8e8e8",
