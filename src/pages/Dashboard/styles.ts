@@ -7,4 +7,8 @@ export const Container = styled.div`
   justify-content: space-around;
   flex: 1;
   background: ${(props) => props.theme.colors.background};
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+  }
 `;

@@ -1,6 +1,16 @@
 import styled from "styled-components";
 
-export const LandingContainer = styled.div``;
+export const LandingContainer = styled.div`
+  @media (max-width: 700px) {
+    overflow: hidden;
+
+    img {
+      width: 90vw;
+      height: 80vh;
+    }
+  }
+`;
+
 export const TitleDiv = styled.div`
   text-align: center;
   h1,
