@@ -15,9 +15,15 @@ interface ToastContextData {
   removeToast(id: string): void;
 }
 
+interface ToastContextProps {
+  children: React.ReactNode;
+}
+
 const ToastContext = createContext<ToastContextData>({} as ToastContextData);
 
-const ToastProvider: React.FC = ({ children }) => {
+const ToastProvider: React.FC<ToastContextProps> = ({
+  children,
+}: ToastContextProps) => {
   const [messages, setMessages] = useState<ToastMessage[]>([]);
 
   const addToast = useCallback(

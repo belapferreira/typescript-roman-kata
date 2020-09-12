@@ -31,7 +31,7 @@ const Converter: React.FC = () => {
         number: {
           min: "O número deve ser maior ou igual a 1",
           max: "O número deve ser menor ou igual a 3999",
-          integer: "Digite un número inteiro",
+          integer: "Digite um número inteiro",
         },
       });
 
