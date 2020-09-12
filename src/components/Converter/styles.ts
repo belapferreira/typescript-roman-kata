@@ -26,6 +26,12 @@ export const ConvertContainer = styled.div`
   h4 {
     font-size: 2.4rem;
   }
+
+  @media (max-width: 700px) {
+    position: absolute;
+    bottom: 24px;
+    height: 70vh;
+  }
 `;
 
 export const InputBlock = styled.div`

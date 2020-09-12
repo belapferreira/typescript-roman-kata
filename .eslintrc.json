@@ -30,6 +30,7 @@
       "react/jsx-filename-extension": [1, {"extensions": [".tsx"] }],
       "import/prefer-default-export": "off",
       "no-use-before-define": "off",
+      "react/jsx-props-no-spreading": "off",
       "import/extensions": [
         "error",
         "ignorePackages",

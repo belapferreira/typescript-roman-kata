@@ -4,10 +4,16 @@ interface RomanNumbersContextData {
   toRoman(n: number): string;
 }
 
+interface RomanNumbersProvderProps {
+  children: React.ReactNode;
+}
+
 const ToolsContext = createContext<RomanNumbersContextData>(
   {} as RomanNumbersContextData,
 );
-const RomanNumbersProvider: React.FC = ({ children }) => {
+const RomanNumbersProvider: React.FC<RomanNumbersProvderProps> = ({
+  children,
+}: RomanNumbersProvderProps) => {
   const getRomanNumeral = useCallback(
     (place: number, digit: number): string => {
       if (digit === 0) {
@@ -46,7 +52,7 @@ const RomanNumbersProvider: React.FC = ({ children }) => {
         getRomanNumeral(numStr.length - index - 1, parseInt(digit, 10)),
       )
       .join("");
-      //eslint-disable-next-line
+    // eslint-disable-next-line
   }, []);
 
   const value = React.useMemo(
