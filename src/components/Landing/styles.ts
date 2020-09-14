@@ -9,6 +9,14 @@ export const LandingContainer = styled.div`
       height: 80vh;
     }
   }
+
+  @media (min-width: 1500px) {
+    width: 40vw;
+    max-width: 600px;
+    img {
+      width: 100%;
+    }
+  }
 `;
 
 export const TitleDiv = styled.div`
@@ -32,6 +40,18 @@ export const TitleDiv = styled.div`
 
     h2 {
       font-size: 3.2rem;
+    }
+  }
+
+  @media (min-width: 1500px) {
+    h1,
+    h2 {
+      font-size: 4.4rem;
+      line-height: 6.4rem;
+    }
+
+    h2 {
+      font-size: 4rem;
     }
   }
 `;
