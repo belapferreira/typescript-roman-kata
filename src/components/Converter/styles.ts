@@ -32,6 +32,22 @@ export const ConvertContainer = styled.div`
     bottom: 24px;
     height: 70vh;
   }
+
+  @media (min-width: 1500px) {
+    width: 40vw;
+    max-width: 600px;
+    max-height: 900px;
+
+    h3,
+    h4 {
+      font-size: 3.6rem;
+      line-height: 6rem;
+    }
+
+    h4 {
+      font-size: 3.2rem;
+    }
+  }
 `;
 
 export const InputBlock = styled.div`
@@ -54,6 +70,13 @@ export const InputBlock = styled.div`
     font-size: 1.5rem;
     color: ${(props) => props.theme.colors.buttonText};
     cursor: pointer;
+  }
+
+  @media (min-width: 1500px) {
+    button {
+      height: 10rem;
+      font-size: 2rem;
+    }
   }
 `;
 
@@ -85,5 +108,19 @@ export const ResultBox = styled.section`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+
+  @media (min-width: 1500px) {
+    h4 {
+      margin: 0;
+      font-size: 3rem;
+    }
+
+    .result-content {
+      margin-top: 2rem;
+      font-size: 3.2rem;
+      width: 30rem;
+      height: 10rem;
+    }
   }
 `;

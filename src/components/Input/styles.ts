@@ -12,4 +12,11 @@ export const Container = styled.input`
   font-size: 2rem;
   text-indent: 8px;
   transition: 0.2s;
+
+  @media (min-width: 1500px) {
+    width: 30rem;
+    height: 10rem;
+    padding: 0.8rem 1.6rem;
+    font-size: 2.4rem;
+  }
 `;
