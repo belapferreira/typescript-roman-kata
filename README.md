@@ -44,7 +44,7 @@ Estiveram envolvidos também no projeto:
 
 ### :heavy_check_mark: Configurações necessárias
 
-Seguem as configurações neessárias para visualizar a aplicação em sua máquina.
+Seguem as configurações necessárias para visualizar a aplicação em sua máquina.
 
 -  [Git](https://git-scm.com);
 -  [Node](https://nodejs.org/);
@@ -58,7 +58,7 @@ git clone https://github.com/belapferreira/typescript-roman-kata
 ```
 
 ### :beginner: Iniciando a aplicação
-1. Pelo terminal, acesse o diretório do repositório do clonado e execute os comandos abaixo.
+1. Pelo terminal, acesse o diretório do repositório clonado e execute os comandos abaixo.
 ```bash
 # instalando as dependências
 yarn install
