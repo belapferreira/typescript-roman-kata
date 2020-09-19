@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const LandingContainer = styled.div`
+  z-index: 2;
   @media (max-width: 700px) {
     overflow: hidden;
 

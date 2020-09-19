@@ -15,6 +15,7 @@ export const ConvertContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  z-index: 2;
 
   h3,
   h4 {

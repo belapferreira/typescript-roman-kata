@@ -13,10 +13,6 @@ const Tooltip: React.FC<TooltipProps> = ({
   className = "",
   children,
 }: TooltipProps) => {
-  Tooltip.defaultProps = {
-    className: "",
-  };
-
   return (
     <Container className={className}>
       {children}
