@@ -25,6 +25,7 @@ const Converter: React.FC = () => {
   const [converted, setConverted] = useState("");
   const { toRoman, toDecimal } = useRomanNumbers();
   const { addToast } = useToast();
+  const formRef = useRef<FormHandles>(null);
 
   function handleChangeConverterType() {
     setConverterType((currentType) => {
@@ -33,8 +34,6 @@ const Converter: React.FC = () => {
       return "decimal";
     });
   }
-
-  const formRef = useRef<FormHandles | null>(null);
 
   function setData(field: string, value: unknown) {
     const result = formRef.current?.setFieldValue(field, value);
