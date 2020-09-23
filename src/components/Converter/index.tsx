@@ -11,6 +11,7 @@ import { useRomanNumbers } from "../../hooks/romanNumbers";
 import Input from "../Input";
 
 import { ConvertContainer, InputBlock, ResultBox } from "./styles";
+import { removeRomanNumeralWritingErrors } from "../../utils/removeRomanNumeralWritingErrors";
 
 interface SubmitData {
   decimal: number;
@@ -95,28 +96,9 @@ const Converter: React.FC = () => {
 
   const preventsBasicMistake = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>) => {
-      const invalidRoman = /[^ivxlcdm]/gi;
+      const text = e.currentTarget.value;
 
-      const invalidIRoman = /(i){4,}/gi;
-      const invalidXRoman = /(x){4,}/gi;
-      const invalidCRoman = /(c){4,}/gi;
-      const invalidMRoman = /(m){4,}/gi;
-
-      const invalidVRoman = /(v)+/gi;
-      const invalidLRoman = /(l)+/gi;
-      const invalidDRoman = /(d)+/gi;
-
-      let text = e.currentTarget.value.replace(invalidRoman, "").toUpperCase();
-      text = text.replace(invalidIRoman, "III");
-      text = text.replace(invalidXRoman, "XXX");
-      text = text.replace(invalidCRoman, "CCC");
-      text = text.replace(invalidMRoman, "MMM");
-
-      text = text.replace(invalidVRoman, "V");
-      text = text.replace(invalidLRoman, "L");
-      text = text.replace(invalidDRoman, "D");
-
-      e.currentTarget.value = text;
+      e.currentTarget.value = removeRomanNumeralWritingErrors(text);
     },
     [],
   );
