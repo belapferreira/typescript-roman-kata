@@ -1,9 +1,4 @@
-import React, {
-  InputHTMLAttributes,
-  useRef,
-  useEffect,
-  useCallback,
-} from "react";
+import React, { InputHTMLAttributes, useRef, useEffect } from "react";
 import { useField } from "@unform/core";
 
 import { Container } from "./styles";
@@ -16,16 +11,6 @@ const Input: React.FC<InputProps> = ({ name, ...rest }: InputProps) => {
   const inputRef = useRef(null);
   const { fieldName, defaultValue = "", registerField } = useField(name);
 
-  const clearInputValue = useCallback(
-    (e: React.KeyboardEvent<HTMLInputElement>) => {
-      let { value } = e.currentTarget;
-      value = value.replace(/\D/g, "");
-
-      e.currentTarget.value = value;
-    },
-    [],
-  );
-
   useEffect(() => {
     registerField({
       name: fieldName,
@@ -36,12 +21,7 @@ const Input: React.FC<InputProps> = ({ name, ...rest }: InputProps) => {
 
   return (
     <>
-      <Container
-        ref={inputRef}
-        defaultValue={defaultValue}
-        onKeyUp={clearInputValue}
-        {...rest}
-      />
+      <Container ref={inputRef} defaultValue={defaultValue} {...rest} />
     </>
   );
 };

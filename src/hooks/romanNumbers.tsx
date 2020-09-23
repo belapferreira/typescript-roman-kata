@@ -2,18 +2,19 @@ import React, { useContext, createContext, useCallback } from "react";
 
 interface RomanNumbersContextData {
   toRoman(n: number): string;
+  toDecimal(roman: string): [string, string];
 }
 
-interface RomanNumbersProvderProps {
+interface RomanNumbersProviderProps {
   children: React.ReactNode;
 }
 
 const ToolsContext = createContext<RomanNumbersContextData>(
   {} as RomanNumbersContextData,
 );
-const RomanNumbersProvider: React.FC<RomanNumbersProvderProps> = ({
+const RomanNumbersProvider: React.FC<RomanNumbersProviderProps> = ({
   children,
-}: RomanNumbersProvderProps) => {
+}: RomanNumbersProviderProps) => {
   const getRomanNumeral = useCallback(
     (place: number, digit: number): string => {
       if (digit === 0) {
@@ -41,25 +42,73 @@ const RomanNumbersProvider: React.FC<RomanNumbersProvderProps> = ({
     [],
   );
 
-  const toRoman = useCallback((n: number): string => {
-    if (n <= 0 || n > 3999) {
-      throw new RangeError("Number out of range for Roman numerals.");
+  const toRoman = useCallback(
+    (n: number): string => {
+      if (n <= 0 || n > 3999) {
+        throw new RangeError("Number out of range for Roman numerals.");
+      }
+      const numStr = n.toString();
+      return numStr
+        .split("")
+        .map((digit, index) =>
+          getRomanNumeral(numStr.length - index - 1, parseInt(digit, 10)),
+        )
+        .join("");
+    },
+    [getRomanNumeral],
+  );
+
+  const getDecimalNumber = useCallback((roman: string) => {
+    const placeSymbols = ["I", "X", "C", "M", ""];
+    const placeHalfSymbols = ["V", "L", "D", ""];
+    const placeSymbolsF = [1, 10, 100, 1000, 0];
+    const placeHalfSymbolsF = [5, 50, 500, 0];
+
+    const posPlaceSymbol = placeSymbols.indexOf(roman);
+    const posPlaceHalfSymbol = placeHalfSymbols.indexOf(roman);
+
+    if (posPlaceSymbol >= 0) {
+      return placeSymbolsF[posPlaceSymbol];
     }
-    const numStr = n.toString();
-    return numStr
-      .split("")
-      .map((digit, index) =>
-        getRomanNumeral(numStr.length - index - 1, parseInt(digit, 10)),
-      )
-      .join("");
-    // eslint-disable-next-line
+
+    return placeHalfSymbolsF[posPlaceHalfSymbol];
   }, []);
+
+  const toDecimal = useCallback(
+    (roman: string): [string, string] => {
+      let total = 0;
+
+      const romans = roman.split("");
+
+      for (let index = 0; index < romans.length; index += 1) {
+        const symbol = romans[index];
+        const value = getDecimalNumber(symbol);
+        const previousValue = getDecimalNumber(romans[index - 1]);
+
+        if (index === 0) {
+          total += value;
+        }
+
+        if (previousValue < value) {
+          total += value - previousValue * 2;
+        }
+
+        if (previousValue >= value) {
+          total += value;
+        }
+      }
+
+      return [total.toString(), toRoman(total)];
+    },
+    [toRoman, getDecimalNumber],
+  );
 
   const value = React.useMemo(
     () => ({
       toRoman,
+      toDecimal,
     }),
-    [toRoman],
+    [toRoman, toDecimal],
   );
 
   return (
