@@ -11,6 +11,7 @@ export const Container = styled.input`
   border-radius: 8px 0 0 8px;
   font-size: 2rem;
   text-indent: 8px;
+  text-transform: uppercase;
   transition: 0.2s;
 
   @media (min-width: 1500px) {

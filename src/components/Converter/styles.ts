@@ -17,6 +17,17 @@ export const ConvertContainer = styled.div`
   justify-content: space-around;
   z-index: 2;
 
+  button#change-converter {
+    background: #f5dead;
+    color: #111;
+    font-size: 2rem;
+    border-radius: 8px;
+    padding: 1.6px;
+    height: 3.6rem;
+    width: 30rem;
+    align-self: center;
+  }
+
   h3,
   h4 {
     font-size: 2.8rem;
