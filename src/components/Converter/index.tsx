@@ -1,11 +1,9 @@
 import React, { useCallback, useState, useRef } from "react";
 import * as yup from "yup";
-import "core-js/es/promise";
-import "core-js/es/set";
-import "core-js/es/map";
 
 import { Form } from "@unform/web";
 import { FormHandles } from "@unform/core";
+import yupCreateSchema from "../../config/yup";
 
 import { useToast } from "../../hooks/toast";
 import { useRomanNumbers } from "../../hooks/romanNumbers";
@@ -47,21 +45,7 @@ const Converter: React.FC = () => {
     const validRoman = /[ivxlcdm]/gi;
 
     try {
-      yup.setLocale({
-        mixed: {
-          notType: "Digite um número de 1 a 3999, tente novamente!",
-        },
-        number: {
-          min: "O número deve ser maior ou igual a 1",
-          max: "O número deve ser menor ou igual a 3999",
-          integer: "Digite um número inteiro",
-        },
-        string: {
-          matches: "Valores válidos: I, V, X, L, C, D, M",
-        },
-      });
-
-      const schema = yup.object().shape({
+      const schema = yupCreateSchema({
         decimal: yup.number().integer().min(1).max(3999),
         roman: yup.string().matches(validRoman),
       });
