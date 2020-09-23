@@ -4,16 +4,16 @@ interface RomanNumbersContextData {
   toRoman(n: number): string;
 }
 
-interface RomanNumbersProvderProps {
+interface RomanNumbersProviderProps {
   children: React.ReactNode;
 }
 
 const ToolsContext = createContext<RomanNumbersContextData>(
   {} as RomanNumbersContextData,
 );
-const RomanNumbersProvider: React.FC<RomanNumbersProvderProps> = ({
+const RomanNumbersProvider: React.FC<RomanNumbersProviderProps> = ({
   children,
-}: RomanNumbersProvderProps) => {
+}: RomanNumbersProviderProps) => {
   const getRomanNumeral = useCallback(
     (place: number, digit: number): string => {
       if (digit === 0) {
